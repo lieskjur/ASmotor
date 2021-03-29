@@ -17,11 +17,13 @@ rb1.i = table2array(readtable('Mereni/Rozbeh1CH2.CSV','range',[19,4]))' .* [1;11
 plot(rb1.om(1,:),rb1.om(2,:))
 plot(rb1.i(1,:),rb1.i(2,:))
 
-% Naprazdno a nakratko
-NP = table2cell(readtable('mereni_AS_motor.xlsx','range','B21:C24')); NP_T = NP';
-np = struct(NP_T{:});
-NK = table2cell(read;table('mereni_AS_motor.xlsx','range','E21:F24')); NK_T = NK';
-nk = struct(NK_T{:});
+% Naprazdno
+U0f = 220; %V
+I0 = 5.35; %V
+
+% Nakratko
+Ukf = 58; %V
+Ik = 9.9; %A
 
 % Odpory vinutí
 R1 = 0.888;
