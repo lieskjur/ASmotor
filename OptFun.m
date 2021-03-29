@@ -27,9 +27,9 @@ function COST = OptFun(teor,mer,podm,delta,plotORnot)
 		mer_fld = mer.(rn(i))(mr);
 		
 		Delta(i) = (sim_fld-mer_fld);
-		Ny(i) = mean([sim_fld.^2;mer_fld.^2]);
+		Ny(i) = mean(mer_fld.^(-2));
 	end
-	COST = Delta'*diag(1./Ny)*Delta;
+	COST = Delta'*diag(Ny)*Delta;
 
 	% Vizualizace
 	if plotORnot == true
