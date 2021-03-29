@@ -3,22 +3,19 @@ addpath('fittingTools')
 
 % Dobeh
 DB = table2array(readtable('Mereni/Dobeh.CSV','range',[19,4]));
-[~,a1] = fitLin(-24.62,[],DB(:,1),DB(:,2),true);
+[~,dwdt] = fitLin(-24.62,[],DB(:,1),DB(:,2),true);
+r = 256e-3; %m
+G = 1860e-3; %kg
+Mz = r*g
+J = 1/(dwdt*Mz)
 
-% Zatezovani
-rozsahy = ["A3:F13","J3:O6","J10:O14"];
-for i = 1:numel(rozsahy) 
-	Z = table2array(readtable('mereni_AS_motor.xlsx','range',rozsahy(i)));
-	z{i}.M = Z(:,1);
-	z{i}.om = 80/1000*30/pi*Z(:,2);
-	z{i}.I = Z(:,3);
-	z{i}.U = Z(:,4);
-	z{i}.alfa = Z(:,5);
-	z{i}.kW = Z(:,6);
-end
-z{1}.R2 = 0; %Ohm
-z{2}.R2 = 0; %Ohm
-z{3}.R2 = 0.67; %Ohm
+%% Rozbeh
+U = 124;
+%I_ef = 4.5; %A NEVYCHAZI
+rb1.om = table2array(readtable('Mereni/Rozbeh1CH1.CSV','range',[19,4]))' .* [1;80/1000*30/pi];
+rb1.i = table2array(readtable('Mereni/Rozbeh1CH2.CSV','range',[19,4]))' .* [1;11/(1.085*sqrt(2))]; % 11A/1.085V + ef hodnota
+plot(rb1.om(1,:),rb1.om(2,:))
+plot(rb1.i(1,:),rb1.i(2,:))
 
 % Naprazdno a nakratko
 NP = table2cell(readtable('mereni_AS_motor.xlsx','range','B21:C24')); NP_T = NP';
