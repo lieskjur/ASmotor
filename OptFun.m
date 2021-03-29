@@ -26,8 +26,8 @@ function COST = OptFun(teor,mer,podm,delta,plotORnot)
 		sim_fld = sim.(rn(i))(sm);
 		mer_fld = mer.(rn(i))(mr);
 		
-		Delta(i) = norm(sim_fld-mer_fld);
-		Ny(i) = mean([sim_fld;mer_fld]);
+		Delta(i) = (sim_fld-mer_fld);
+		Ny(i) = mean([sim_fld.^2;mer_fld.^2]);
 	end
 	COST = Delta'*diag(1./Ny)*Delta;
 
