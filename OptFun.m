@@ -27,7 +27,7 @@ function COST = OptFun(teor,mer,podm,delta,plotORnot)
 		mer_fld = mer.(rn(i))(mr);
 		
 		Delta(i) = (sim_fld-mer_fld);
-		Ny(i) = mean(mer_fld.^(-2)); % opt. predpocitano, ale YOLO
+		Ny(i) = mean(mer_fld.^(-2));
 	end
 	COST = Delta'*diag(Ny)*Delta;
 
