@@ -1,10 +1,10 @@
 function COST = OptFun(teor,mer,podm,delta,plotORnot)
 	if nargin < 5; plotORnot = false; end;
 
-	%% UPRAVA PARAMETRU
+	% Uprava parametru
 	pn = fieldnames(teor);
 	for i = 1:numel(pn)
-		par.(pn(i)) = teor.(pn(i))+delta(i);
+		par.(pn{i}) = teor.(pn{i})+delta(i);
 	end
 
 	% Simulace
@@ -27,7 +27,7 @@ function COST = OptFun(teor,mer,podm,delta,plotORnot)
 		mer_fld = mer.(rn(i))(mr);
 		
 		Delta(i) = (sim_fld-mer_fld);
-		Ny(i) = mean(mer_fld.^(-2));
+		Ny(i) = mean(mer_fld.^(-2)); % opt. predpocitano, ale YOLO
 	end
 	COST = Delta'*diag(Ny)*Delta;
 
