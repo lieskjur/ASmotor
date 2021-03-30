@@ -1,4 +1,4 @@
-function [sim,param] = OptFun(teor,mer,podm,delta,plotORnot)
+function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 	if nargin < 5; plotORnot = false; end;
 
 	% Uprava parametru

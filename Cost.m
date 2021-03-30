@@ -1,6 +1,6 @@
-function C = Cost(teor,mer,podm,delta,plotORnot)
+function C = Cost(teor,mer,podm,delta)
 	% Prubeh simulace
-	[sim,~] = OptFun(teor,mer,podm,delta,plotORnot)
+	[sim,~] = SimFun(teor,mer,podm,delta,false)
 
 	% Cost funkce
 	[sm,mr] = find( sim.t' == mer.t ); %Prumet casovych prubehu

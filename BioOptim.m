@@ -20,7 +20,7 @@ end
 C = @(delta) Cost(teor,mer,podm,delta);
 
 % Pred optimalizaci
-[~,~] = OptFun(teor,mer,podm,zeros(numel(fn),1),true);
+[~,~] = SimFun(teor,mer,podm,zeros(numel(fn),1),true);
 
 % Optimalizace
 disp('zacina ga optimalizace, cas:')
@@ -37,4 +37,4 @@ stoptime=clock;
 disp([num2str(stoptime(4)),':',num2str(stoptime(5))]);
 
 % Po optimalizaci
-[~,Optim.Param] = OptFun(teor,mer,podm,delta.Opt,true);
+[~,Optim.Param] = SimFun(teor,mer,podm,delta.Opt,true);
