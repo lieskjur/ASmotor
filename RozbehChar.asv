@@ -45,12 +45,10 @@ plot(locs,i_ef_pks,'.')
 plot(mer.t(in),i_ef,'.')
 
 %export dat
-mer.t=mer.t(in);
-mer.om=mer.om(in);
-mer.i_ef=i_ef;
+mer.t=t(in);
+mer.om=om(in);
+mer.i_ef=
 
-figure
-plot(mer.t,mer.om./50,mer.t,mer.i_ef)
 
 % Ulozeni
 save('RozbehChar.mat','-struct','mer')
