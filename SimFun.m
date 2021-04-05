@@ -15,21 +15,23 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 	end
 
 	% Formatovani vystupu simulace
-	sim.i_1 = A
-	sim.om = dY(:,7);
+	sim.i_ef = A/sqrt(2);
+	sim.om = dY(:,5);
 	sim.t = T;
 
 	% Vizualizace
 	if plotORnot == true
 		figure; hold on; c = 0; %>>
 		for i = ["mer","sim"]
-			for j = ["om","i_1"]
+			for j = ["om","i_ef"]
 				fld = eval(i+"."+j);
-				plot(fld(:,1),fld(:,2))
+				time = eval(i+".t");
+				plot(time,fld)
 				c = c+1;
 				lgd(c) = j+" - "+i;
 			end
-		end %<<
+		end
+		legend(lgd) %<<
 	end
 
 end
