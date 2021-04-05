@@ -25,11 +25,13 @@ R1=0.888;
 R2=0.191;
 p=R1/R2;
 %   vypocet parametru z mereni naprazdno
-Lh=((U0f)^2*3)/(2*pi*50*sqrt((3*S0_1f)^2-(3*P0_1f)^2));
+Lh=((U0f)^2*3)/(2*2*pi*50*sqrt((3*S0_1f)^2-(3*P0_1f)^2));
 %   vypocet parametru z mereni nakratko
 Zk=Ukf/Ik;
 L_1sig=(Zk*sqrt(1-(cos_fik)^2))/(2*pi*50);
-L_2sig=L_1sig/p^2;  %fakt nevim, jestli to takhle je, vsude to pisou jinak
+R2_cara=cos_fik*Zk-R1;
+p_na2=R2_cara/R2;
+L_2sig=L_1sig/p_na2;  %fakt nevim, jestli to takhle je, vsude to pisou jinak
 %   prepocet pro nas model
 L1=Lh+L_1sig;
 L2=Lh+L_2sig;
