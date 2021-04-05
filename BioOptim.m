@@ -1,18 +1,19 @@
 % Teoreticke hodnoty parametru
 teor = load('TeorParam.mat');
+%teor = load('DemoParametry.mat'); %Chyskeho 230V motor
 
 % Namerene rozbehove char.
 mer = load('RozbehChar.mat');
 
 % Podminky simulace
-podm.Umax = 124; %V
+podm.Umax = sqrt(2)*124; %V
 podm.f = 50; %Hz
 podm.t = [mer.t_0,mer.t_f];
 
 % Limity optimalizace
 fn = fieldnames(teor);
 for i = 1:numel(fn)
-	delta.Min(i) = -teor.(fn{i})*0.6;
+	delta.Min(i) = teor.(fn{i})*-0.6;
 	delta.Max(i) = teor.(fn{i})*0.6;
 end
 
