@@ -10,6 +10,7 @@ podm.Umax = sqrt(2)*124; %V
 podm.f = 50; %Hz
 podm.t = [mer.t_0,mer.t_f];
 
+
 % Limity optimalizace
 fn = fieldnames(teor);
 for i = 1:numel(fn)
