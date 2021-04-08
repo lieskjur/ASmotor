@@ -4,14 +4,13 @@ function [dy,i_1] = ASmotor(par,nap,t,y)
 	psi_2a = y(3); psi_2b = y(4);
 	om = y(5);
 	%% Pomocne funkce
-	i_n1 = @(a_n,a_m) ( a_n*par.L2-a_m*par.Lh )/( par.L1*par.L2-par.Lh^2 );
-    i_n2 = @(a_n,a_m) ( a_n*par.L1-a_m*par.Lh )/( par.L1*par.L2-par.Lh^2 );
+	i_mk = @(psi_mk,psi_nk,L_n) ( psi_mk*L_n-psi_nk*par.Lh )/( par.L1*par.L2-par.Lh^2 );
 	WaveGen = @(f,phi,t) sin(2*pi*f*t+phi);
 	%% Proudy
-	i_1a = i_n1(psi_1a,psi_2a);
-	i_2a = i_n2(psi_2a,psi_1a);
-	i_1b = i_n1(psi_1b,psi_2b);
-	i_2b = i_n2(psi_2b,psi_1b);
+	i_1a = i_mk(psi_1a,psi_2a,par.L2);
+	i_2a = i_mk(psi_2a,psi_1a,par.L1);
+	i_1b = i_mk(psi_1b,psi_2b,par.L2);
+	i_2b = i_mk(psi_2b,psi_1b,par.L1);
 	%% Napeti
     f=nap.f/par.pp;
     u_u=nap.Umax*WaveGen(f,0,t);

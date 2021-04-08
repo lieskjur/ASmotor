@@ -21,7 +21,7 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 
 	% Vizualizace
 	if plotORnot == true
-		figure; hold on; c = 1; %>>
+		figure; hold on; %>>
 		for i = ["mer","sim"]
 			time = eval(i+".t");
 			for j = ["om","i_ef"]
@@ -29,11 +29,9 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 				if j == "i_ef"; yyaxis right; end
 				fld = eval(i+"."+j);
 				plot(time,fld)
-				lgd(c) = j+" - "+i;
-				c = c+1;
 			end
 		end
-		legend(lgd) %<<
+		legend(["\omega - mer","\omega - sim","i_{ef} - mer","i_{ef} - sim"]) %<<
 	end
 
 end
