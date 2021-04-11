@@ -54,6 +54,7 @@ teor.M_B = r*G;
 % teor.M_B=20;
 teor.J = abs(1/(dwdt*teor.M_B));
 % teor.J = 0.3;
+teor.b = 0;
 
 % % Naprazdno a nakratko
 % NP = table2cell(readtable('mereni_AS_motor.xlsx','range','B21:C24')); NP_T = NP';

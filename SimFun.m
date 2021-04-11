@@ -21,6 +21,8 @@ function [sml,param] = SimFun(teor,mer,podm,delta,plotORnot)
 	Rs = param.R1;
 	Rr = param.R2;
 	J = param.J;
+	M_B = param.M_B;
+	b = param.b;
 	Umax = podm.Umax;
 
 	options = simset('SrcWorkspace','current');
@@ -29,7 +31,7 @@ function [sml,param] = SimFun(teor,mer,podm,delta,plotORnot)
 	% Formatovani vystupu simulace
 	sml.i_ef = reshape(SimOut.I.Data/sqrt(2),1,[]);
 	sml.om = reshape(SimOut.om.Data,1,[]);
-	sml.t = SimOut.tout;
+	sml.t = SimOut.tout + podm.t(1);
 
 	% Vizualizace
 	if plotORnot == true
