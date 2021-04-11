@@ -28,7 +28,7 @@ function [sml,param] = SimFun(teor,mer,podm,delta,plotORnot)
 
 	% Formatovani vystupu simulace
 	sml.i_ef = reshape(SimOut.I.Data/sqrt(2),1,[]);
-	sml.om = reshape(SimOut.om.Data/sqrt(2),1,[]);
+	sml.om = reshape(SimOut.om.Data,1,[]);
 	sml.t = SimOut.tout;
 
 	% Vizualizace
