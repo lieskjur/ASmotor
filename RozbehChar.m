@@ -2,7 +2,7 @@ addpath('Mereni')
 SamplT=0.002;   %[s]
 % Syrove char.
 rb1.om = table2array(readtable('Mereni/Rozbeh1CH1.CSV','range',[19,4]))' .* [1;1000/80*pi/30];
-rb1.i_1 = table2array(readtable('Mereni/Rozbeh1CH2.CSV','range',[19,4]))' .* [1;11/(1.085)]; % 11A/1.085V; ef hodnota
+rb1.i_1 = table2array(readtable('Mereni/Rozbeh1CH2.CSV','range',[19,4]))' .* [1;11/1.085]; % 11A/1.085V; ef hodnota
 %I_ef = 4.5; %A NEVYCHAZI
 
 % Formatovani char.
@@ -15,19 +15,10 @@ end
 % Casovy interval mereneho prechodu
 mer.t_0 = 0.5;
 mer.t_f = 4.75;
-in=find(mer.t>mer.t_0 & mer.t<mer.t_f);
 
-%obalky
-i_1=mer.i_1(in);
-[pks,locs] = findpeaks(i_1,mer.t(in));
-
-%efektivni proud
-i_ef_pks=pks./sqrt(2);
-
-%prevzorkovani primkami
-% tq=mer.t_0:SamplT:mer.t_f;
-i_ef = interp1(locs,i_ef_pks,mer.t(in));
-
+% Vyhlazeni dat
+in = find(mer.t>mer.t_0 & mer.t<mer.t_f);
+mer.i_ef = [mer.i_1(1:in(1)-1),movmean(mer.i_1(in),5),mer.i_1(in(end)+1:end)]
 
 % Vizualizace
 figure; hold on; %>>
@@ -35,22 +26,8 @@ xline(mer.t_0,'r');xline(mer.t_f,'r')
 yyaxis left
 plot(mer.t,mer.om)
 yyaxis right
-plot(mer.t,mer.i_1) 
-hold off%<<
-figure
-hold on
-plot(mer.t(in),i_1)
-plot(locs,pks)
-plot(locs,i_ef_pks,'.')
-plot(mer.t(in),i_ef,'.')
-
-%export dat
-mer.t=mer.t(in);
-mer.om=mer.om(in);
-mer.i_ef=i_ef;
-
-figure
-plot(mer.t,mer.om./50,mer.t,mer.i_ef)
+%plot(mer.t,mer.i_1)
+plot(mer.t,mer.i_ef) 
 
 % Ulozeni
 save('RozbehChar.mat','-struct','mer')

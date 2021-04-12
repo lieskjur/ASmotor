@@ -51,6 +51,6 @@ DB = table2array(readtable('Mereni/Dobeh.CSV','range',[19,4]));
 r = 265e-3; %m
 G = 1860e-3*9.81; %N
 teor.M_B = r*G;
-teor.J = -1/(dwdt*teor.M_B);
+teor.J = -teor.M_B/dwdt;
 
 save('TeorParam.mat','-struct','teor')

@@ -31,7 +31,7 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 				plot(time,fld)
 			end
 		end
-		legend(["\omega - mer","\omega - sim","i_{ef} - mer","i_{ef} - sim"]) %<<
+		legend(["\omega [rad/s] - mer","\omega [rad/s] - sim","i_{ef} [A] - mer","i_{ef} [A] - sim"],'location','east') %<<
 	end
 
 end
