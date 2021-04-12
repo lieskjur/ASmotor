@@ -1,7 +1,7 @@
 addpath('Mereni')
 SamplT=0.002;   %[s]
 % Syrove char.
-rb1.om = table2array(readtable('Mereni/Rozbeh1CH1.CSV','range',[19,4]))' .* [1;80/1000*30/pi];
+rb1.om = table2array(readtable('Mereni/Rozbeh1CH1.CSV','range',[19,4]))' .* [1;1000/80*pi/30];
 rb1.i_1 = table2array(readtable('Mereni/Rozbeh1CH2.CSV','range',[19,4]))' .* [1;11/(1.085)]; % 11A/1.085V; ef hodnota
 %I_ef = 4.5; %A NEVYCHAZI
 
