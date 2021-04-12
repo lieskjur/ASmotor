@@ -24,14 +24,13 @@ C = @(delta) Cost(teor,mer,podm,delta);
 % Pred optimalizaci
 [~,~] = SimFun(teor,mer,podm,zeros(numel(fn),1),true);
 
-%{
 % Optimalizace
 disp('zacina ga optimalizace, cas:')
 starttime=clock;
 disp([num2str(starttime(4)),':',num2str(starttime(5))]);
 
-options = optimoptions('ga','MaxTime',3600*5);
-[Optim.Delta,Optim.Cost] = ga(C,numel(fn),[],[],[],[],delta.Min,delta.Max,[],options);
+options = optimoptions('ga','MaxTime',60*5);
+[Optim.Delta,Optim.Cost] = ga(@(delta) Cost(delta,teor,mer,podm),numel(fn),[],[],[],[],delta.Min,delta.Max,[],options);
 
 save results
 
@@ -41,4 +40,3 @@ disp([num2str(stoptime(4)),':',num2str(stoptime(5))]);
 
 % Po optimalizaci
 [~,Optim.Param] = SimFun(teor,mer,podm,delta.Opt,true);
-%}

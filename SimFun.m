@@ -15,7 +15,7 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 	end
 
 	% Formatovani vystupu simulace
-	sim.i_ef = A/(sqrt(2)*3);
+	sim.i_ef = A/sqrt(2);
 	sim.om = Y(:,5);
 	sim.t = T;
 
