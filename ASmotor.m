@@ -24,7 +24,7 @@ function [dy,i_1] = ASmotor(par,nap,t,y)
 	d_psi_2b = u_2b - par.R2*i_2b + om*psi_2a;
 	%% Moment a uhlova rychlost
 	Mh = 3/2*par.pp*(psi_1a*i_1b-psi_1b*i_1a);
-	d_om = (Mh-par.M_B)/(par.J*par.pp);
+	d_om = (Mh-par.M_B-par.b*om)/(par.J*par.pp);
 	%% Derivace stavovych velicin
 	dy = [	d_psi_1a
 			d_psi_1b

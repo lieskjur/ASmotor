@@ -60,4 +60,6 @@ G = 1860e-3*9.81; %N
 teor.M_B = r*G/5;
 teor.J = -teor.M_B/dwdt;
 
+teor.b = 0.2
+
 save('TeorParam.mat','-struct','teor')
