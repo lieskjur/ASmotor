@@ -12,13 +12,8 @@ function [dy,i_1] = ASmotor(par,nap,t,y)
 	i_1b = i_mk(psi_1b,psi_2b,par.L2);
 	i_2b = i_mk(psi_2b,psi_1b,par.L1);
 	%% Napeti
-    f=nap.f/par.pp;
-    u_u=nap.Umax*WaveGen(f,0,t);
-    u_v=nap.Umax*WaveGen(f,-2/3*pi,t);
-    u_w=nap.Umax*WaveGen(f,-4/3*pi,t);
-    k=2/3;
-	u_1b = k*(u_u-0.5*u_v-0.5*u_w);
-	u_1a = k*(0-sqrt(3)/2*u_v+sqrt(3)/2*u_w);
+	u_1b = nap.Umax*WaveGen(nap.f/par.pp,0,t);
+	u_1a = nap.Umax*WaveGen(nap.f/par.pp,pi/2,t);
 	u_2a = 0;
 	u_2b = 0;
 	%% Statorova napeti

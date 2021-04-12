@@ -1,3 +1,4 @@
+close all;
 % Teoreticke hodnoty parametru
 teor = load('TeorParam.mat');
 %teor = load('DemoParametry.mat'); %Chyskeho 230V motor
