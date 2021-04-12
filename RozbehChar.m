@@ -15,9 +15,9 @@ end
 % Casovy interval mereneho prechodu
 mer.t_0 = 0.5;
 mer.t_f = 4.75;
+mer.in = find(mer.t>=mer.t_0 & mer.t<=mer.t_f);
 
 % Vyhlazeni dat
-in = find(mer.t>mer.t_0 & mer.t<mer.t_f);
 mer.i_ef = [mer.i_1(1:in(1)-1),movmean(mer.i_1(in),5),mer.i_1(in(end)+1:end)]
 
 % Vizualizace
