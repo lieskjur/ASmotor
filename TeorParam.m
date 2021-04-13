@@ -3,7 +3,7 @@ addpath('fittingTools')
 
 %Parametry z ESP:
 %   ze stitku
-pp=2;
+param.pp = 2;
 
 %   naprazdno
 U0f=220;
@@ -39,27 +39,20 @@ L_1sig=(Zk*sqrt(1-(cos_fik)^2))/(2*2*pi*50);
 % L_1sig=L_2sig'
 L_2sig=L_1sig/p^2;
 
-%   prepocet pro nas model
-L1=Lh+L_1sig;
-L2=Lh+L_2sig;
-L=Lh-(L1*L2)/Lh;
-
 %zapis
-teor.L1=L1;
-teor.L2=L2;
+teor.L_1sig=L_1sig;
+teor.L_2sig=L_2sig;
 teor.Lh=Lh;
 teor.R1=R1;
-teor.R2=R2; 
-teor.pp=pp;
+teor.R2=R2;
 
 % Dobeh
 DB = table2array(readtable('Mereni/Dobeh.CSV','range',[19,4]));
-[~,dwdt] = fitLin(-24.62,[],DB(:,1),DB(:,2),false);
+[~,teor.dwdt] = fitLin(-24.62,[],DB(:,1),DB(:,2),false);
 r = 265e-3; %m
 G = 1860e-3*9.81; %N
-teor.M_B = r*G/5;
-teor.J = -teor.M_B/dwdt;
+teor.M_B = r*G;
 
-teor.b = 0.2
+teor.b = 0
 
 save('TeorParam.mat','-struct','teor')

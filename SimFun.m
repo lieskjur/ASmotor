@@ -7,6 +7,8 @@ function [sim,param] = SimFun(teor,mer,podm,delta,plotORnot)
 		param.(pn{i}) = teor.(pn{i})+delta(i);
 	end
 
+	param = Dopocet(param);
+
 	% Simulace
 	ODE_fun = @(t,y) ASmotor(param,podm,t,y);
 	[T,Y] = ode45(ODE_fun,podm.t,zeros(5,1));
